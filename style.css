@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background: #222;
+  color: white;
+}
+
+h1 {
+  margin: 15px;
+}
+
+#game {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  margin: auto;
+  overflow: hidden;
+  border: 5px solid white;
+  background: #333;
+}
+
+#road {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(
+      to right,
+      #222 0%,
+      #222 8%,
+      #444 8%,
+      #444 92%,
+      #222 92%,
+      #222 100%
+    );
+}
+
+/* Road lines */
+#road::before,
+#road::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  width: 8px;
+  height: 200%;
+  background: repeating-linear-gradient(
+    to bottom,
+    white 0px,
+    white 60px,
+    transparent 60px,
+    transparent 120px
+  );
+  animation: roadMove 0.5s linear infinite;
+}
+
+#road::before {
+  left: 32%;
+}
+
+#road::after {
+  left: 66%;
+}
+
+@keyframes roadMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(120px);
+  }
+}
+
+/* Player car */
+#player {
+  position: absolute;
+  bottom: 30px;
+  left: 175px;
+  width: 50px;
+  height: 90px;
+  background: red;
+  border-radius: 10px;
+  z-index: 5;
+}
+
+#player::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  width: 34px;
+  height: 25px;
+  background: #8ee7ff;
+  border-radius: 5px;
+}
+
+#player::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  width: 40px;
+  height: 10px;
+  background: #111;
+}
+
+/* Enemy cars */
+.enemy {
+  position: absolute;
+  width: 50px;
+  height: 90px;
+  background: yellow;
+  border-radius: 10px;
+  top: -120px;
+}
+
+.enemy1 {
+  left: 90px;
+}
+
+.enemy2 {
+  left: 260px;
+}
+
+#score {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#gameOver {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 20;
+  padding-top: 200px;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: #00c853;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00a844;
+}
